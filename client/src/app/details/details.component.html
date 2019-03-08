@@ -1,0 +1,76 @@
+<div class="main">
+    <div class="section section-buttons">
+        <div class="container">
+
+
+            <div class="tim-title">
+                <h3>Add Hero</h3>
+            </div>
+            <div class="row">
+                <div class="col-8 col-sm-6 col-md-3">
+                  <div class="form-group">
+
+                    <img src="imgURL"  class="img-rounded img-responsive" alt="Rounded Image" *ngIf="imgURL"/>
+             
+                  </div>
+                </div>
+                <div class="col-8 col-sm-6 col-md-3">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-success">
+                        <h5>First Name</h5>
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control" placeholder="Last Name">
+                        <br/>
+                        <h5></h5>
+                        <input class="form-control" placeholder="birthday"
+                        name="dp"  ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
+                 
+                        <br/>
+                        <h5></h5>
+                        <input type="number" class="form-control" placeholder="age">
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control" placeholder="status">
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control" placeholder="locationArea">
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control" placeholder="jop">
+                        <hr/>
+                        <div class="row">
+                        <div class="col-8 col-sm-6 col-md-3">
+                            <h5>death day: </h5> 
+    
+                          </div>
+                          <div class="col-8 col-sm-6 col-md-3">
+                              <h5></h5>
+                            <input class="form-control" placeholder="death day"
+                            name="dp"  ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                        </div>
+                      </div>
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control" placeholder="deathReason">
+                        <br/>
+                        <h5></h5>
+                        <input class="form-control" placeholder="Infection Date"
+                        name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        <br/>
+                        <h5></h5>
+                        <input type="text" class="form-control dis" placeholder="description">
+                        
+
+                      </div>
+                
+                </div>
+         
+            </div>
+        
+
+        </div>
+      </div>
+    </div>

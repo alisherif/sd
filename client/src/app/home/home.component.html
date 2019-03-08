@@ -1,0 +1,88 @@
+<div class="page-header" data-parallax="true" style="background-image: url('../assets/img/main.png');">
+  <div class="filter"></div>
+  <div class="container">
+      <div class="motto text-center">
+        <br />
+        <br />
+        <br />
+          <h3>عين الأمل بتشوف ... فجر الخلاص قدام</h3>
+          
+          <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-outline-neutral btn-round"><i class="fa fa-play"></i>Watch video</a>
+          <button type="button" class="btn btn-outline-neutral btn-round">Download</button>
+          -->
+        </div> 
+  </div>
+  </div>
+
+<div class="main">
+
+  <div class="section ">
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-6">
+              <h4 class="images-title">نبذة عن الاستخدام المفرط للعنف من قبل الحكومة  السودانية لقمع الاحتجاجات السلمية</h4>
+            </div>
+            <div class="col-md-6">
+              <img src="../../assets/img/main.png" class="img-rounded img-responsive" alt="Rounded Image">
+              </div>
+        </div>
+      </div>
+  </div>
+  <div class="section" id="carousel">
+      <div class="container">
+        <div class="row">
+         
+        </div>
+      </div>
+
+<div class="nav-tabs-navigation">
+    <div class="nav-tabs-wrapper">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" (click)="tabSwitch('images')" role="tab" name="aImage">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" (click)="tabSwitch('videos')" role="tab" name="aVideo">Videos</a>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+<!-- Tab panes -->
+<div class="tab-content text-center">
+    <div class="tab-pane active" name="images" role="tabpanel">
+        <ng-image-slider [images]="imageObject" [imagePopup]="true" [animationSpeed]="0.2"></ng-image-slider>
+    </div>
+    <div class="tab-pane" name="videos" role="tabpanel">
+        <ng-image-slider [images]="videoObject" [imagePopup]="true" [animationSpeed]="0.2"></ng-image-slider>
+    </div>
+    
+</div>
+
+
+   
+   
+   
+   
+   
+    </div>
+   <div class="section">
+   <mat-grid-list cols="3" rowHeight="200">
+      <mat-grid-tile
+          *ngFor="let tile of tiles"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+         >
+         <img src="../../assets/img/main.png" height="200" class="img-rounded img-responsive" alt="Rounded Image">
+      </mat-grid-tile>
+    </mat-grid-list>
+
+
+
+
+  </div>
+  
+  
+     
+</div>

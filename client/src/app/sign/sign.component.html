@@ -1,0 +1,79 @@
+<div class="main">
+    <div class="section section-buttons">
+        <div class="container">
+
+
+            <div class="tim-title">
+                <h3>Add Hero</h3>
+            </div>
+            <div class="row">
+                <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+                <div class="col-8 col-sm-6 col-md-3">
+                  <div class="form-group">
+                      <span style="color:red;" *ngIf="message">{{message}}</span>
+                      <input [hidden]="true" #file id="file" type="file" accept='image/*' (change)="preview(file.files)" />
+                      <label for="file">
+                    <img [src]="imgURL"  class="img-rounded img-responsive" alt="Rounded Image" *ngIf="imgURL"/>
+                </label>
+                  </div>
+                </div>
+                <div class="col-8 col-sm-6 col-md-3">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-success">
+                        <input type="text" class="form-control form-control-success" [(ngModel)]="hero.firstName" #firstName name="firstName" placeholder="First Name">
+                        <br/>
+                        <input type="text" class="form-control" [(ngModel)]="hero.lastName" #lastName name="lastName" placeholder="Last Name">
+                        <br/>
+                        <input class="form-control" placeholder="birthday"
+                        name="dp1"  ngbDatepicker #d1="ngbDatepicker" [(ngModel)]="hero.dateOfBirth" (click)="d1.toggle()">
+                        <br/>
+                        <input type="text" class="form-control" [(ngModel)]="hero.maritalStatus" #maritalStatus name="maritalStatus" placeholder="maritalStatus">
+                        <br/>
+                        <input type="text" class="form-control" [(ngModel)]="hero.address" #address name="address" placeholder="address">
+                        <br/>
+                        <input type="text" class="form-control" [(ngModel)]="hero.placeOfBirth" #placeOfBirth name="placeOfBirth" placeholder="placeOfBirth">
+                        <br/>
+                        <input type="text" class="form-control" [(ngModel)]="hero.occupation" #occupation name="occupation" placeholder="occupation">
+                        <hr/>
+                        <div class="row">
+                        <div class="col-8 col-sm-6 col-md-3">
+                            <h5>death day: </h5> 
+    
+                          </div>
+                          <div class="col-8 col-sm-6 col-md-3">
+                          <input class="form-control"  [(ngModel)]="hero.dateOfDeath" placeholder="death day"
+                            name="dp2"  ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                        </div>
+                      </div>
+                        <br/>
+                       
+                        <input type="text" class="form-control" [(ngModel)]="hero.reaasonOfDeath" #reaasonOfDeath name="reaasonOfDeath" placeholder="reaason of death">
+                        <br/>
+                        <input class="form-control" [(ngModel)]="hero.dateOfInjuiry" #dateOfInjuiry placeholder="Infection Date"
+                        name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        <br/>
+                        <input type="text" class="form-control dis" [(ngModel)]="hero.description" name="description" #description placeholder="description">
+                        
+
+                      </div>
+                
+                    <div class="col-8 col-sm-6 col-md-3">
+                    <button type="submit" class="btn btn-success indent" >Submit</button>
+                  
+                    <button type="button" class="btn btn-info indent"  (click)="onDis()"  >Back</button>
+                 
+                  </div>
+
+                </div>
+         
+           
+           
+                </form>
+                 </div>
+        
+
+        </div>
+      </div>
+    </div>
