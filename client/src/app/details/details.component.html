@@ -6,65 +6,68 @@
             <div class="tim-title">
                 <h3>Add Hero</h3>
             </div>
-            <div class="row">
-                <div class="col-8 col-sm-6 col-md-3">
-                  <div class="form-group">
 
-                    <img src="imgURL"  class="img-rounded img-responsive" alt="Rounded Image" *ngIf="imgURL"/>
-             
+            <div class="row">
+                <div class="col-md-6 indent">
+                  <div *ngIf="images">
+                      <!--../../assets/img/main.png  -->
+                    <img src="{{images[0]}}" height="300"  class="img-rounded img-responsive" />
+
+                   
+                    
+                    <mat-grid-list class="indenth" cols="3" rowHeight="100" *ngIf="images">
+                        <mat-grid-tile *ngFor="let image  of images" >
+                        
+                            
+                            <img src="{{image}}" height="100" class="img-rounded img-responsive" >
+                          </mat-grid-tile>
+                      </mat-grid-list>
+                  
                   </div>
                 </div>
-                <div class="col-8 col-sm-6 col-md-3">
-
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group has-success">
-                        <h5>First Name</h5>
+      
+                <div class="col-md-6 indent" *ngIf="hero">
+                    
+                      <div class="row">
+                        <h6  class="labelclr">First name: </h6> <h5 class="textclr">{{ hero.firstname}} </h5></div>
                         <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control" placeholder="Last Name">
-                        <br/>
-                        <h5></h5>
-                        <input class="form-control" placeholder="birthday"
-                        name="dp"  ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
-                 
-                        <br/>
-                        <h5></h5>
-                        <input type="number" class="form-control" placeholder="age">
-                        <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control" placeholder="status">
-                        <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control" placeholder="locationArea">
-                        <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control" placeholder="jop">
-                        <hr/>
                         <div class="row">
-                        <div class="col-8 col-sm-6 col-md-3">
-                            <h5>death day: </h5> 
-    
-                          </div>
-                          <div class="col-8 col-sm-6 col-md-3">
-                              <h5></h5>
-                            <input class="form-control" placeholder="death day"
-                            name="dp"  ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
-                        </div>
-                      </div>
-                        <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control" placeholder="deathReason">
-                        <br/>
-                        <h5></h5>
-                        <input class="form-control" placeholder="Infection Date"
-                        name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                        <br/>
-                        <h5></h5>
-                        <input type="text" class="form-control dis" placeholder="description">
+                        <h6  class="labelclr">Last name: </h6> <h5 class="textclr"> {{ hero.lastname}} </h5></div>
                         
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Date of birth: </h6> <h5 class="textclr">{{ hero.date_of_birth | date:'mediumDate'}} </h5></div>
+                
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Marital status: </h6> <h5 class="textclr">{{ hero.marital_status}} </h5></div>
+                        
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Address: </h6> <h5 class="textclr">{{hero.address}} </h5></div>
+                       
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Place of birth: </h6> <h5 class="textclr">{{hero.place_of_birth}} </h5></div>
+                       
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Occupation; </h6> <h5 class="textclr">{{hero.occupation}} </h5></div>
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Date of death: </h6> <h5 class="textclr"> {{hero.date_of_death | date:'mediumDate'}}</h5></div>
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Reaason of death: </h6> <h5 class="textclr">{{hero.reason_of_death}} </h5></div>
+                     
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Date of injuiry: </h6> <h5 class="textclr">{{hero.date_of_injuiry | date:'mediumDate'}} </h5></div>
 
-                      </div>
+                        <br/>
+                        <div class="row">
+                        <h6  class="labelclr">Description: </h6> <h5 class="textclr"> {{hero.description}}</h5></div>
+
                 
                 </div>
          

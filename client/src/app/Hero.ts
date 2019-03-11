@@ -1,17 +1,17 @@
 export class Hero{
 id:number;
-    firstName:string;
-    lastName:string;
-    dateOfBirth:Date;
-    maritalStatus:string;
+firstname:string;
+lastname:string;
+date_of_birth:Date;
+marital_status:string;
     address:string;
-    placeOfBirth:string;
+    place_of_birth:string;
     occupation:string;
-    dateOfDeath:Date;
-    reaasonOfDeath:string;
-    dateOfInjuiry:string;
+    date_of_death:Date;
+    reason_of_death:string;
+    date_of_injuiry:Date;
     description:string;
-    imgUrl:string;
+    thumbnail:string;
     constructor(){
 
     }

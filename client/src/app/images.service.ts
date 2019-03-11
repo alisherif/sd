@@ -9,13 +9,16 @@ import { catchError, map, tap,retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ImagesService {
-Url="";
+
+
   constructor(private http: HttpClient) { 
 
   }
 
+  
+
   getImages (): Observable<Array<object>> {
-    return this.http.get<Array<object>>('/api/hero/images').pipe(
+    return this.http.get<Array<object>>('/heroes/public/api/slider/images').pipe(
       retry(3),
       catchError(this.handleError)
     );

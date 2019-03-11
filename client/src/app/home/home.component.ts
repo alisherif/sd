@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ImagesService} from '../images.service';
+
+import { HeroService } from '../hero.service';
+import { Hero } from '../Hero';
+import { Router, ActivatedRoute } from '@angular/router';
+
 export interface Tile {
   color: string;
   cols: number;
@@ -16,46 +21,36 @@ export interface Tile {
 
 export class HomeComponent implements OnInit {
   
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
-  ];
-  
-  imageObject:Array<object>=[{image: '../../assets/img/main.png',
-  thumbImage: '../../assets/img/main.png'},
-  {image: '../../assets/img/heros.jpg',
-  thumbImage: '../../assets/img/heros.jpg'},
-  {image: '../../assets/img/mod.jpg',
-  thumbImage: '../../assets/img/mod.jpg'},
-  {image: '../../assets/img/main.png',
-  thumbImage: '../../assets/img/main.png'},
-  {image: '../../assets/img/heros.jpg',
-  thumbImage: '../../assets/img/heros.jpg'},
-  {image: '../../assets/img/mod.jpg',
-  thumbImage: '../../assets/img/mod.jpg'}
-];
-  
-  
-  videoObject:Array<object>=[
+  page=1;
+  pSize=6;
+  dataLen:number;  
 
-    {video:'https://www.youtube.com/watch?v=immgEQZSu3E'},
-    {video:'https://www.youtube.com/watch?v=4GlbFHwQOqY'},
-    {video:'https://www.youtube.com/watch?v=qda0nbGLRxA'},
-    {video:'https://www.youtube.com/watch?v=immgEQZSu3E'},
-    {video:'https://www.youtube.com/watch?v=4GlbFHwQOqY'},
-    {video:'https://www.youtube.com/watch?v=qda0nbGLRxA'}
-  ]
-  constructor(private imagesService:ImagesService) {}
+  T:object[];
+  heroes:Hero[];
 
-  ngOnInit() {
-    const html = document.getElementsByTagName('nav')[0];
-    console.log(html);
-    html.classList.add('navbar-transparent');
+
+   imageObject:Array<object>;
+
+  videoObject:Array<object>;
+ 
+  constructor(private router: Router,private imagesService:ImagesService,private heroService:HeroService) {
+   
+
   }
 
+  ngOnInit() {
 
+    
+
+    const html = document.getElementsByTagName('nav')[0];
+    html.classList.add('navbar-transparent');
+    this.setImageSlider();
+    this.setVideoSlider();
+    this.getHeroes();
+
+  }
+
+//tabs animation
   tabSwitch(name:any){
     const htmlI = document.getElementsByName('aImage')[0];
     const htmlV = document.getElementsByName('aVideo')[0];
@@ -75,6 +70,49 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //pages animation 
+  pageChange(){
+    this.T=this.heroes.slice((this.page-1)*this.pSize,this.page*this.pSize);
+  }
+// routing when click card
+  toDetails(toId){
+    console.log(toId)
+    this.router.navigate( ['/details/'+toId] ); 
+  }
  
+  setImageSlider(){
+    this.imagesService.getImages().subscribe(images=>{
+      this.imageObject=[];
+      images.forEach(element=>{
+        var ob={
+          image:element['url'],
+          thumbImage:element['url']
+        }
+        this.imageObject.push(ob)
+      });
+     
+    })
+  }
+  setVideoSlider(){
+    this.imagesService.getImages().subscribe(images=>{
+      this.videoObject=[];
+      images.forEach(element=>{
+        // if(element['mime']=='image/png'){}
+        var ob={
+          video:element['url']
+        }
+        this.videoObject.push(ob)
+    }
+      );
+    })
+  }
+
+  getHeroes(){
+    this.heroService.getHeros().subscribe(heroes=>{
+      this.heroes=heroes
+      this.T=this.heroes.slice(this.page-1,this.page*this.pSize);
+      this.dataLen=this.heroes.length;
+    });
+  }
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
+import { ActivatedRoute } from '@angular/router';
+import { Hero } from '../Hero';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-details',
@@ -8,11 +11,31 @@ import { HeroService } from '../hero.service';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private heroService:HeroService) { }
+  hero:Hero;
+  images=[];
+  constructor(  private route: ActivatedRoute,private heroService:HeroService) { }
 
   ngOnInit() {
-    this.heroService.getHero(4).subscribe((o)=>
-    console.log(o))
+    this.getImages();
+    this.getHero();
   }
+
+  getHero(){
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id)
+    this.heroService.getHero(id).subscribe(hero => this.hero =hero);
+  }
+  getImages(){
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHeroImage(id).subscribe(images=>
+      {
+        images.forEach(element => {
+          this.images.push(element['url']);
+          
+        });
+      console.log(this.images);}
+      )
+  }
+
 
 }

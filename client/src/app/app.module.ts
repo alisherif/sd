@@ -43,12 +43,12 @@ import { NbAuthGuard } from './auth-guard.service';
         NbPasswordAuthStrategy.setup({
           name: 'email',
  
-          baseEndpoint: '/api/auth/',
+          baseEndpoint: '/heroes/public/api/auth/',
           login: {
             method:'post',
             
             redirect: {
-            success: '/sign',
+            success: '/hero',
                 failure: null,
               }
           },
@@ -63,7 +63,7 @@ import { NbAuthGuard } from './auth-guard.service';
          },
          token:{
            class:NbAuthJWTToken,
-           key: 'accessToken'
+           key: 'token'
          },
          
        

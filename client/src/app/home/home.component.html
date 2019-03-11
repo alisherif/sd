@@ -51,10 +51,10 @@
 </div>
 <!-- Tab panes -->
 <div class="tab-content text-center">
-    <div class="tab-pane active" name="images" role="tabpanel">
+    <div class="tab-pane active" *ngIf="imageObject" name="images" role="tabpanel">
         <ng-image-slider [images]="imageObject" [imagePopup]="true" [animationSpeed]="0.2"></ng-image-slider>
     </div>
-    <div class="tab-pane" name="videos" role="tabpanel">
+    <div class="tab-pane" name="videos" *ngIf="videoObject" role="tabpanel">
         <ng-image-slider [images]="videoObject" [imagePopup]="true" [animationSpeed]="0.2"></ng-image-slider>
     </div>
     
@@ -68,14 +68,18 @@
    
     </div>
    <div class="section">
-   <mat-grid-list cols="3" rowHeight="200">
+   <mat-grid-list cols="3" rowHeight="400" *ngIf="heroes">
       <mat-grid-tile
-          *ngFor="let tile of tiles"
-          [colspan]="tile.cols"
-          [rowspan]="tile.rows"
+          *ngFor="let hero of T"
          >
-         <img src="../../assets/img/main.png" height="200" class="img-rounded img-responsive" alt="Rounded Image">
-      </mat-grid-tile>
+         <div class="card card-register" style="background-color: rgba(255, 255, 255, 0.692)" (click)="toDetails(hero.id)" >
+          <img src={{hero.thumbnail}} height="200" class="img-rounded img-responsive" alt="Rounded Image">
+          <h5 style="color: black">Name: </h5> 
+          <h6 style="color: rgb(77, 29, 7)">{{hero.firstname}} {{hero.lastname}}</h6>
+          <h5 style="color: black">Date of death:</h5> 
+          <h6 style="color: rgb(77, 29, 7)">{{hero.date_of_death | date:'mediumDate'}}</h6>
+        </div>
+        </mat-grid-tile>
     </mat-grid-list>
 
 
@@ -83,6 +87,8 @@
 
   </div>
   
+
+  <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
   
      
 </div>

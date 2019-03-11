@@ -14,6 +14,8 @@ export class SignComponent implements OnInit {
   hero:Hero = new Hero();
   model: NgbDateStruct;
   admin:boolean;
+
+  minDate = {year: 1930, month: 1, day: 1};
   constructor(private router: Router,private heroService:HeroService ) { }
 
   ngOnInit() {
@@ -21,13 +23,12 @@ export class SignComponent implements OnInit {
     const html = document.getElementsByTagName('nav')[0];
     console.log(html);
     html.classList.remove('navbar-transparent');
-    console.log(html);
+  
   }
 
   public imagePath;
   imgURL: any ="../../assets/img/main.png";
   public message: string;
- 
   preview(files) {
     if (files.length === 0)
       return;
@@ -44,10 +45,17 @@ export class SignComponent implements OnInit {
     reader.onload = (_event) => { 
       this.imgURL = reader.result; 
     }
+
+  }
+
+  addFile(id:number,files: FileList){
+    let formData = new FormData(); 
+      formData.append('file', files[0] , files[0] .name); 
+      this.heroService.addHeroImage(id,formData);
   }
 
   onSubmit() {
-    this.hero.imgUrl=this.imgURL;
+    //this.hero.imgUrl=this.imgURL;
     console.log(this.hero);
     this.heroService.addHero(this.hero).subscribe(r=>{
 

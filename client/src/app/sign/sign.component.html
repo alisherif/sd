@@ -44,7 +44,7 @@
                           </div>
                           <div class="col-8 col-sm-6 col-md-3">
                           <input class="form-control"  [(ngModel)]="hero.dateOfDeath" placeholder="death day"
-                            name="dp2"  ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                            name="dp2"  ngbDatepicker #d2="ngbDatepicker" [minDate]="minDate" (click)="d2.toggle()">
                         </div>
                       </div>
                         <br/>
@@ -54,8 +54,7 @@
                         <input class="form-control" [(ngModel)]="hero.dateOfInjuiry" #dateOfInjuiry placeholder="Infection Date"
                         name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                         <br/>
-                        <input type="text" class="form-control dis" [(ngModel)]="hero.description" name="description" #description placeholder="description">
-                        
+                        <textarea class="form-control" rows="4" [(ngModel)]="hero.description" name="description" #description placeholder="description"></textarea>
 
                       </div>
                 

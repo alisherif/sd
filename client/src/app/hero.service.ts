@@ -14,36 +14,49 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 })
 export class HeroService {
   token:string;
-
   constructor(private http: HttpClient, private authService: NbAuthService) {
 
 
     this.authService.onTokenChange()
     .subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {  
-          this.token = "Bearer "+ token.getValue();    
+          this.token = token.getValue();    
     }
     });
 
    }
 
+  getHeros(): Observable<Hero[]> {
+    return this.http.get<Hero[]>('/heroes/public/api/heroes',{
+      headers:{ 'content-type': 'application/json' },
+    });    
+  }
+
  addHero (hero:Hero): Observable<any> {
 
-   return this.http.post<Hero>('/api/hero/', hero, 
-   {
-  
-    headers: {'Authorization':this.token},
-
+   return this.http.post<any>('/heroes/public/api/heroes/', hero, 
+   {headers:{ 'content-type': 'application/json' },
+    params: {'token':this.token},
    }
-  //  ).pipe(
-  //      retry(2),
-  //      catchError(this.handleError)
   );
   }
 
   getHero(id:number): Observable<any> {
-return this.http.get<any>('/api/hero/'+id);
+return this.http.get<any>('/heroes/public/api/heroes/'+id);
   }
-  
+
+ 
+  getHeroImage(id:number): Observable<any> {
+    
+    return this.http.get<any>('/heroes/public/api/heroes/'+id+'/images');
+    
+  }
+
+  addHeroImage(id:number,formData:FormData):Observable<any>{
+    
+    return this.http.post<any>('/heroes/public/api/heroes/'+id+'/images',formData);
+
+  }
+
 
 }
