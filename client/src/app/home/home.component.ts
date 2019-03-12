@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {HostListener, Component, OnInit } from '@angular/core';
 
 import {ImagesService} from '../images.service';
 
@@ -40,10 +40,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    
-
-    const html = document.getElementsByTagName('nav')[0];
-    html.classList.add('navbar-transparent');
     this.setImageSlider();
     this.setVideoSlider();
     this.getHeroes();
@@ -115,4 +111,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+
+    const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const html = document.getElementsByTagName('nav')[0];
+    if (number < 500) {
+  
+    html.classList.add('navbar-transparent');
+    }
+    else{
+
+      html.classList.remove('navbar-transparent');
+    }
+
+  }
 }
