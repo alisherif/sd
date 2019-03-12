@@ -15,7 +15,7 @@
   </div>
 
 <div class="main">
-
+    <section id="section-top">
   <div class="section ">
     <div class="container" >
         <div class="row">
@@ -59,15 +59,11 @@
     </div>
     
 </div>
-
-
-   
-   
-   
-   
-   
-    </div>
-   <div class="section">
+ </div>
+  
+</section>
+    <section id="section-hero">
+   <div class="section"  >
    <mat-grid-list cols="3" rowHeight="400" *ngIf="heroes">
       <mat-grid-tile
           *ngFor="let hero of T"
@@ -86,9 +82,9 @@
 
 
   </div>
-  
+
 
   <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
   
-     
+</section>
 </div>

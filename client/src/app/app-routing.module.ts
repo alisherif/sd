@@ -10,7 +10,8 @@ import { NbAuthGuard } from './auth-guard.service';
 const routes: Routes = [
   {path:'',redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
-  {path:'hero',canActivate: [NbAuthGuard],component:SignComponent},
+  // ,canActivate: [NbAuthGuard]
+  {path:'hero',component:SignComponent},
   {path:'details/:id',component:DetailsComponent},
   {
     path: 'auth',
@@ -19,7 +20,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    anchorScrolling: "enabled",
+    onSameUrlNavigation: "reload",
+    enableTracing: true,
+    scrollPositionRestoration: "enabled"
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

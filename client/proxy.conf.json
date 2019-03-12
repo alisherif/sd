@@ -1,13 +1,45 @@
 {
 
-    "/api/auth/login": {
-      "target": "http://127.0.0.1:5000",
-      "secure": false
+    "/heroes/public/api/auth/login": {
+      "target":  {
+        "host": "sudanrevolution.org",
+        "protocol": "https:",
+        "port": 443
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "info"
     }
     ,
-    "/api/hero/":{
-      "target": "http://127.0.0.1:5000",
-      "secure": false
+    "/heroes/public/api/heroes/*":{
+      "target":  {
+        "host": "sudanrevolution.org",
+        "protocol": "https:",
+        "port": 443
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/heroes/public/api/heroes":{
+      "target":  {
+        "host": "sudanrevolution.org",
+        "protocol": "https:",
+        "port": 443
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/heroes/public/api/slider/images":{
+      "target":  {
+        "host": "sudanrevolution.org",
+        "protocol": "https:",
+        "port": 443
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "info"
     }
    
   }

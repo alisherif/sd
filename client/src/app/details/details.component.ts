@@ -16,6 +16,9 @@ export class DetailsComponent implements OnInit {
   constructor(  private route: ActivatedRoute,private heroService:HeroService) { }
 
   ngOnInit() {
+    const html = document.getElementsByTagName('nav')[0];
+    html.classList.remove('navbar-transparent');
+    
     this.getImages();
     this.getHero();
   }

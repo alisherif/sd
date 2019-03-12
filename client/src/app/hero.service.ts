@@ -34,7 +34,7 @@ export class HeroService {
 
  addHero (hero:Hero): Observable<any> {
 
-   return this.http.post<any>('/heroes/public/api/heroes/', hero, 
+   return this.http.post<any>('/heroes/public/api/heroes', hero, 
    {headers:{ 'content-type': 'application/json' },
     params: {'token':this.token},
    }
@@ -53,8 +53,11 @@ return this.http.get<any>('/heroes/public/api/heroes/'+id);
   }
 
   addHeroImage(id:number,formData:FormData):Observable<any>{
-    
-    return this.http.post<any>('/heroes/public/api/heroes/'+id+'/images',formData);
+    console.log("add images")
+    return this.http.post<any>('/heroes/public/api/heroes/'+id+'/images',formData,
+    {
+    params: {'token':this.token},
+   });
 
   }
 

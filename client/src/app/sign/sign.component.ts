@@ -15,21 +15,33 @@ export class SignComponent implements OnInit {
   model: NgbDateStruct;
   admin:boolean;
 
+  date_of_death:NgbDateStruct;
+  date_of_injuiry:NgbDateStruct;
+  date_of_birth:NgbDateStruct;
+  
   minDate = {year: 1930, month: 1, day: 1};
+
+  public imagePath:any[];
+  profile:any ="../../assets/img/profile.png";
+  fistImage:boolean;
+  imgURL: any ="../../assets/img/add_photo.png";
+  images:any[];
+
+  public message: string;
+
+
   constructor(private router: Router,private heroService:HeroService ) { }
 
   ngOnInit() {
+    this.images=[];
+    this.imagePath=[];
     this.admin=true;
     const html = document.getElementsByTagName('nav')[0];
-    console.log(html);
     html.classList.remove('navbar-transparent');
   
   }
 
-  public imagePath;
-  imgURL: any ="../../assets/img/main.png";
-  public message: string;
-  preview(files) {
+  previewL(files) {
     if (files.length === 0)
       return;
  
@@ -40,27 +52,59 @@ export class SignComponent implements OnInit {
     }
  
     var reader = new FileReader();
-    this.imagePath = files;
+    this.imagePath.push(files);
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+      this.images.push(reader.result);
     }
+    console.log(this.imagePath.length);
+  }
+
+  previewP(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath.push(files);
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.profile = reader.result;
 
   }
+}
 
   addFile(id:number,files: FileList){
     let formData = new FormData(); 
-      formData.append('file', files[0] , files[0] .name); 
-      this.heroService.addHeroImage(id,formData);
+      formData.append('image_file', files[0], files[0].name); 
+    this.heroService.addHeroImage(id,formData).subscribe((r)=>{
+      console.log(r);
+    });
   }
 
   onSubmit() {
     //this.hero.imgUrl=this.imgURL;
-    console.log(this.hero);
-    this.heroService.addHero(this.hero).subscribe(r=>{
+   
+    let DD=this.date_of_death;
+    this.hero.date_of_death= ""+DD.year+"-"+DD.month+"-"+DD.day+""
+    let DI=this.date_of_injuiry
+    this.hero.date_of_injuiry=""+DI.year+"-"+DI.month+"-"+DI.day+""
+    let DB=this.date_of_birth
+    this.hero.date_of_birth=""+DB.year+"-"+DB.month+"-"+DB.day+""
 
-      console.log(r);
+    this.heroService.addHero(this.hero).subscribe(r=>{
+      console.log(r.id)
+      this.imagePath.forEach((path)=>{
+        console.log(path);
+        this.addFile(r.id,path);
+      })
     })
+
 
   }
   onDis(){
