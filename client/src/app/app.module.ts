@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -72,7 +72,7 @@ import { NgxLoadingModule } from 'ngx-loading';
       ],
     }),
   ],
-  providers: [NbAuthGuard],
+  providers: [NbAuthGuard ,{provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
