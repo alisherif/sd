@@ -10,8 +10,8 @@ import { EditHeroComponent } from './edit-hero/edit-hero.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 
 const routes: Routes = [
-  {path:'',redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
+  {path:'home',redirectTo: '/', pathMatch: 'full'},
+  { path: '', component: HomeComponent},
   // ,canActivate: [NbAuthGuard]
   {path:'hero',component:SignComponent},
   {path:'edit/:id',canActivate: [NbAuthGuard],component:EditHeroComponent},
