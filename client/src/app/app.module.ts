@@ -17,8 +17,13 @@ import { SignComponent } from './sign/sign.component';
 import { DetailsComponent } from './details/details.component';
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 import {NgImageSliderModule} from 'ng-image-slider';
 import { NbAuthGuard } from './auth-guard.service';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { EditHeroComponent } from './edit-hero/edit-hero.component';
+
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { NbAuthGuard } from './auth-guard.service';
     NavbarComponent,
     HomeComponent,
     SignComponent,
-    DetailsComponent
+    DetailsComponent,
+    HomeAdminComponent,
+    EditHeroComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +42,9 @@ import { NbAuthGuard } from './auth-guard.service';
     AppRoutingModule,
     HttpClientModule,
     MatGridListModule,
+    MatCardModule,
     NgImageSliderModule,
+    NgxLoadingModule.forRoot({}),
     NgbModule.forRoot(),
     NbThemeModule.forRoot(),
     NbAuthModule.forRoot({
@@ -48,19 +57,10 @@ import { NbAuthGuard } from './auth-guard.service';
             method:'post',
             
             redirect: {
-            success: '/hero',
+            success: '/admin',
                 failure: null,
               }
           },
-          logout: {
-           endpoint: '',
-          
-           redirect: {
-             success: '/auth/login',
-                 failure: '/auth/login',
-               }
- 
-         },
          token:{
            class:NbAuthJWTToken,
            key: 'token'

@@ -1,0 +1,35 @@
+.dis{
+    height: 10.0em;
+}
+.indent{
+    margin-left: 2 em;
+    margin-right: 8 em;
+    max-width: 300px
+    
+    }
+.indentright{
+    margin-left: 8 em;
+}
+.indenth{
+        margin-top: 1em;
+    
+    }
+
+.loading-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+.loading {
+        height: 189px;
+        width: 189px;
+        position: relative;
+        margin: 0 15px 15px 0;
+        padding: 15px;
+        border: 1px #ccc solid;
+        border-radius: 4px;
+      }
+      
+.loading p {
+        margin: 0 0 10px 0;
+      }

@@ -31,7 +31,7 @@
       "changeOrigin": true,
       "logLevel": "debug"
     },
-    "/heroes/public/api/slider/images":{
+    "/heroes/public/api/slider/images/*":{
       "target":  {
         "host": "sudanrevolution.org",
         "protocol": "https:",

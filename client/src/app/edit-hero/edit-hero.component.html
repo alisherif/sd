@@ -1,0 +1,106 @@
+
+
+<div class="main">
+    <div class="section section-buttons">
+        <div class="container">
+
+
+            <div class="tim-title">
+                <h3>Edit Hero</h3>
+            </div>
+            
+                <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+                    <div class="row">
+                  <div class="col-md-6 indent">
+                  <div class="form-group">
+                      <span style="color:red;" *ngIf="message">{{message}}</span>
+                      <input [hidden]="true" #Pfile id="Pfile" type="file" accept='image/*' (change)="previewP(Pfile.files)" />
+                       <label for="Pfile"> 
+                      <img [src]="profile"  class="img-rounded img-responsive" alt="Rounded Image"/> 
+                    </label>
+
+                      <mat-grid-list class="indenth" cols="{{gridCols}}" rowHeight="70" *ngIf="images">
+                          <mat-grid-tile *ngFor="let image  of images" >
+                              <img src="{{image}}" height="70" class="img-rounded img-responsive" >
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <label for="Lfile">
+                                <img src="../../assets/img/add_photo.png" height="90" class="img-rounded img-responsive" >
+                              </label> 
+                              </mat-grid-tile>
+                        </mat-grid-list>
+         
+                <input [hidden]="true" #file id="Lfile" type="file" accept='image/*' (change)="previewL(file.files)" />
+                <button *ngIf="images" class="btn btn-danger indenth " (click)="imageDelete()">Delete All</button>
+            </div> 
+                </div>
+               
+                <div class="col-md-6 ">
+                    <div class="form-group has-success indentright">
+                      <h5>First Name:</h5>
+                        <input type="text" class="form-control form-control-success" [(ngModel)]="hero.firstname" #firstName name="firstName" placeholder="hero.firstname">
+                        <br/>
+                        <h5>Last Name:</h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.lastname" #lastName name="lastname" placeholder="hero.lastname">
+                        <br/>
+                        <h5>Date of Birth: </h5> 
+                        <input class="form-control" [(ngModel)]="date_of_birth" placeholder="{{hero.date_of_birth}}" [minDate]="minDate"
+                        name="dp1"  ngbDatepicker #d1="ngbDatepicker"  (click)="d1.toggle()">
+                        <br/>
+                        <h5>Marital status:</h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.marital_status" #maritalStatus name="maritalStatus" placeholder="hero.marital_status">
+                        <br/>
+                        <h5>Address</h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.address" #address name="address" placeholder="hero.address">
+                        <br/>
+                        <h5>Place of Birth:</h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.place_of_birth" #placeOfBirth name="placeOfBirth" placeholder="hero.place_of_birth">
+                        <br/>
+                        <h5>Occupation:</h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.occupation" #occupation name="occupation" placeholder="hero.occupation">
+                        <hr/>
+                       
+                     
+                        <h5>Date of death: </h5> 
+                            
+                          <input class="form-control" [(ngModel)]="date_of_death"  placeholder="{{hero.date_of_death}}"
+                            name="dp2"  ngbDatepicker #d2="ngbDatepicker"  (click)="d2.toggle()">
+                      
+                 
+                        <br/>
+                         <h5>Reason of Death: </h5>
+                        <input type="text" class="form-control" [(ngModel)]="hero.reason_of_death" #reaasonOfDeath name="reaasonOfDeath" placeholder="hero.reason_of_death">
+                        <br/>
+                        <h5>Date of Injuiry: </h5>
+                        <input class="form-control" [(ngModel)]="date_of_injuiry"   #dateOfInjuiry placeholder="{{hero.date_of_injuiry}}"
+                        name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        <br/>
+                        <h5>Description:</h5>
+                        <textarea class="form-control" rows="4" [(ngModel)]="hero.description" name="description" #description placeholder="hero.description"></textarea>
+
+                      </div>
+                
+                    
+                    <button type="submit" class="btn btn-success indent" >Submit</button>
+                  
+                    <button type="button" style="margin-left: 2em" class="btn btn-info indent"  (click)="onDis()"  >Back</button>
+                 
+                 
+
+                </div>
+         
+           
+           
+                
+              
+              </div>
+            </form>
+                
+        
+
+        </div>
+      </div>
+   <ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+              [template]="loadingTemplate"></ngx-loading>
+       
+    </div>

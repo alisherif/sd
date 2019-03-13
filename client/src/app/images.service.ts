@@ -4,16 +4,25 @@ import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http'
 
 import { Observable, of ,throwError} from 'rxjs';
 import { catchError, map, tap,retry } from 'rxjs/operators';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
 
+  token:string;
+  constructor(private http: HttpClient, private authService: NbAuthService) {
 
-  constructor(private http: HttpClient) { 
 
-  }
+    this.authService.onTokenChange()
+    .subscribe((token: NbAuthJWTToken) => {
+      if (token.isValid()) {  
+          this.token = token.getValue();    
+    }
+    });
+
+   }
 
   
 
@@ -23,6 +32,25 @@ export class ImagesService {
       catchError(this.handleError)
     );
   };
+  getVideos():Observable<any> {
+    return this.http.get('./assets/videos.txt');
+  }
+  addImageSlider(formData:FormData):Observable<any>{
+    console.log("add images")
+    return this.http.post<any>('/heroes/public/api/slider/images',formData,
+    {
+    params: {'token':this.token},
+   });
+
+  }
+  deleteImageSlider(id:number):Observable<any>{
+    console.log("delete images")
+    return this.http.delete('/heroes/public/api/slider/images/'+id,
+    {
+    params: {'token':this.token},
+   });
+
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

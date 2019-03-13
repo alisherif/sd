@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   page=1;
   pSize=6;
   dataLen:number;  
-
+  gridCols:number=3;
   T:object[];
   heroes:Hero[];
 
@@ -39,7 +39,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if(window.innerWidth<600){
+      this.gridCols=2;
+    }else
+      {    this.gridCols = 3;}
     this.setImageSlider();
     this.setVideoSlider();
     this.getHeroes();
@@ -81,8 +84,8 @@ export class HomeComponent implements OnInit {
       this.imageObject=[];
       images.forEach(element=>{
         var ob={
-          image:element['url'],
-          thumbImage:element['url']
+          image: "https://sudanrevolution.org"+element['url'],
+          thumbImage:"https://sudanrevolution.org"+element['url']
         }
         this.imageObject.push(ob)
       });
@@ -90,16 +93,10 @@ export class HomeComponent implements OnInit {
     })
   }
   setVideoSlider(){
-    this.imagesService.getImages().subscribe(images=>{
-      this.videoObject=[];
-      images.forEach(element=>{
-        // if(element['mime']=='image/png'){}
-        var ob={
-          video:element['url']
-        }
-        this.videoObject.push(ob)
-    }
-      );
+    this.imagesService.getVideos().subscribe(video=>{
+      
+      this.videoObject=video
+
     })
   }
 
@@ -108,6 +105,7 @@ export class HomeComponent implements OnInit {
       this.heroes=heroes
       this.T=this.heroes.slice(this.page-1,this.page*this.pSize);
       this.dataLen=this.heroes.length;
+
     });
   }
 
@@ -127,4 +125,12 @@ export class HomeComponent implements OnInit {
     }
 
   }
+  @HostListener('window:resize', ['$event'])
+onResize(event) {
+  if(window.innerWidth<600){
+    this.gridCols=2;
+  }else{
+    this.gridCols=3;
+  }
+}
 }

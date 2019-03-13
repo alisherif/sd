@@ -22,6 +22,7 @@ export class SignComponent implements OnInit {
   minDate = {year: 1930, month: 1, day: 1};
 
   public imagePath:any[];
+  public imagePathP;
   profile:any ="../../assets/img/profile.png";
   fistImage:boolean;
   imgURL: any ="../../assets/img/add_photo.png";
@@ -71,7 +72,7 @@ export class SignComponent implements OnInit {
     }
  
     var reader = new FileReader();
-    this.imagePath.push(files);
+    this.imagePathP =files;
     reader.readAsDataURL(files[0]); 
     reader.onload = (_event) => { 
       this.profile = reader.result;
@@ -83,6 +84,13 @@ export class SignComponent implements OnInit {
     let formData = new FormData(); 
       formData.append('image_file', files[0], files[0].name); 
     this.heroService.addHeroImage(id,formData).subscribe((r)=>{
+      console.log(r);
+    });
+  }
+  addProfileFile(id:number,files: FileList){
+    let formData = new FormData(); 
+      formData.append('image_file', files[0], files[0].name); 
+    this.heroService.addHeroThumbnail(id,formData).subscribe((r)=>{
       console.log(r);
     });
   }
@@ -98,7 +106,9 @@ export class SignComponent implements OnInit {
     this.hero.date_of_birth=""+DB.year+"-"+DB.month+"-"+DB.day+""
 
     this.heroService.addHero(this.hero).subscribe(r=>{
-      console.log(r.id)
+      if(this.imagePathP !=undefined)
+      this.addProfileFile(r.id,this.imagePathP);
+      
       this.imagePath.forEach((path)=>{
         console.log(path);
         this.addFile(r.id,path);

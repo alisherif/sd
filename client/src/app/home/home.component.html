@@ -6,10 +6,6 @@
         <br />
         <br />
           <h3>عين الأمل بتشوف ... فجر الخلاص قدام</h3>
-          
-          <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-outline-neutral btn-round"><i class="fa fa-play"></i>Watch video</a>
-          <button type="button" class="btn btn-outline-neutral btn-round">Download</button>
-          -->
         </div> 
   </div>
   </div>
@@ -23,7 +19,7 @@
               <h4 class="images-title">نبذة عن الاستخدام المفرط للعنف من قبل الحكومة  السودانية لقمع الاحتجاجات السلمية</h4>
             </div>
             <div class="col-md-6">
-              <img src="../../assets/img/main.png" class="img-rounded img-responsive" alt="Rounded Image">
+              <img src="../../assets/img/sub.jpg" class="img-rounded img-responsive" alt="Rounded Image">
               </div>
         </div>
       </div>
@@ -63,28 +59,43 @@
   
 </section>
     <section id="section-hero">
-   <div class="section"  >
-   <mat-grid-list cols="3" rowHeight="400" *ngIf="heroes">
+   <div class="section section-dark"  >
+      <div class="title-brand">
+    <h1 class="presentation-title">Sudan Heroes</h1>
+      </div>
+
+   <mat-grid-list style="margin-top: 3em" cols="{{gridCols}}" rowHeight="400" *ngIf="heroes">
       <mat-grid-tile
           *ngFor="let hero of T"
          >
-         <div class="card card-register" style="background-color: rgba(255, 255, 255, 0.692)" (click)="toDetails(hero.id)" >
-          <img src={{hero.thumbnail}} height="200" class="img-rounded img-responsive" alt="Rounded Image">
+         <mat-card class="example-card" (click)="toDetails(hero.id)">
+            
+            <img mat-card-image height="250" src="https://sudanrevolution.org{{hero.thumbnail.url}}"   alt="Hero Image" *ngIf="hero.thumbnail">
+            <mat-card-content>
+                <h5 style="color: black">Name: </h5> 
+                <h6 style="color: rgb(77, 29, 7)">{{hero.firstname}} {{hero.lastname}}</h6>
+                <h5 style="color: black">Date of death:</h5> 
+                <h6 style="color: rgb(77, 29, 7)">{{hero.date_of_death | date:'mediumDate'}}</h6>
+              
+            </mat-card-content>
+         </mat-card>
+         <!-- <div class="card card-register" style="background-color: rgba(255, 255, 255, 0.692)" (click)="toDetails(hero.id)" >
+            <img src="https://sudanrevolution.org{{hero.thumbnail.url}}"  class="img-rounded img-responsive" alt="Rounded Image" *ngIf="hero.thumbnail">
           <h5 style="color: black">Name: </h5> 
           <h6 style="color: rgb(77, 29, 7)">{{hero.firstname}} {{hero.lastname}}</h6>
           <h5 style="color: black">Date of death:</h5> 
           <h6 style="color: rgb(77, 29, 7)">{{hero.date_of_death | date:'mediumDate'}}</h6>
-        </div>
+        </div> -->
         </mat-grid-tile>
     </mat-grid-list>
 
 
-
+    <div style="margin-left: 25%;margin-top: 2em;" >
+        <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
+      </div>
 
   </div>
 
 
-  <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
-  
 </section>
 </div>

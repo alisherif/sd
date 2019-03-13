@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 330px;
+    background-color: rgb(224, 221, 221);
+    margin-left: 2em
+  }
+  
+.fixed-but {
+    position: fixed;
+    bottom:0;
+    right: 0;
+    z-index:30;
+}

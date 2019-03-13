@@ -41,6 +41,16 @@ export class HeroService {
   );
   }
 
+
+ deleteHeroImage (heroId:number,id:number): Observable<any> {
+
+   return this.http.delete<any>('/heroes/public/api/heroes/'+heroId+'/images/'+id, 
+   {
+    params: {'token':this.token},
+   }
+  );
+  }
+
   getHero(id:number): Observable<any> {
 return this.http.get<any>('/heroes/public/api/heroes/'+id);
   }
@@ -48,8 +58,7 @@ return this.http.get<any>('/heroes/public/api/heroes/'+id);
  
   getHeroImage(id:number): Observable<any> {
     
-    return this.http.get<any>('/heroes/public/api/heroes/'+id+'/images');
-    
+    return this.http.get<any>('/heroes/public/api/heroes/'+id+'/images');  
   }
 
   addHeroImage(id:number,formData:FormData):Observable<any>{
@@ -59,6 +68,24 @@ return this.http.get<any>('/heroes/public/api/heroes/'+id);
     params: {'token':this.token},
    });
 
+  }
+
+  addHeroThumbnail(id:number,formData:FormData):Observable<any>{
+    console.log("add images")
+    return this.http.post<any>('/heroes/public/api/heroes/'+id+'/images',formData,
+    {
+    params: {'token':this.token, 'thumbnail':"1"},
+
+   });
+  }
+  
+  updateHero(id:number,hero:Hero):Observable<any>{
+    return this.http.patch<any>('/heroes/public/api/heroes/'+id,hero,
+    {
+      headers:{ 'content-type': 'application/json' },
+      params: {'token':this.token},
+   }
+    );
   }
 
 

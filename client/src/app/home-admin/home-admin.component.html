@@ -1,0 +1,65 @@
+<div class="main">
+    <div class="section" >
+   
+        <div class="tab-pane active" *ngIf="imageObject" name="images" role="tabpanel">
+            <ng-image-slider [images]="imageObject" [imagePopup]="true" [animationSpeed]="0.2"></ng-image-slider>
+          </div>
+
+    <input [hidden]="true"  #Sfile id="Sfile" type="file" accept='image/*' (change)="addSliderFile(Sfile.files)" />
+   <div class="row">
+    <div style="margin-left:8em ">
+    <label for="Sfile">
+    <a class="btn btn-info indent" >Add Image</a>
+  </label>
+</div>
+<div style="margin-left:2em ">
+ 
+    <button class="btn btn-danger indent" (click)="sliderDelete()">Delete All Slider</button>
+
+</div>
+
+</div>
+<ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+              [template]="loadingTemplate"></ngx-loading>
+  </div>
+
+  <section >
+
+<div class="section"  >
+   <mat-grid-list cols="{{gridCols}}" rowHeight="400" *ngIf="heroes">
+      <mat-grid-tile
+          *ngFor="let hero of T"
+         >
+         <mat-card class="example-card" (click)="toEdit(hero.id)" >
+            
+            <img mat-card-image height="250" src="https://sudanrevolution.org{{hero.thumbnail.url}}"   alt="Hero Image" *ngIf="hero.thumbnail">
+            <mat-card-content>
+                <h5 style="color: black">Name: </h5> 
+                <h6 style="color: rgb(77, 29, 7)">{{hero.firstname}} {{hero.lastname}}</h6>
+                <h5 style="color: black">Date of death:</h5> 
+                <h6 style="color: rgb(77, 29, 7)">{{hero.date_of_death | date:'mediumDate'}}</h6>
+              
+            </mat-card-content>
+         </mat-card>
+
+         <!-- <div class="card card-register" style="background-color: rgba(255, 255, 255, 0.692)" (click)="toEdit(hero.id)" >
+          <img src="https://sudanrevolution.org{{hero.thumbnail.url}}"  class="img-rounded img-responsive" alt="Rounded Image" *ngIf="hero.thumbnail">
+          <h5 style="color: black">Name: </h5> 
+          <h6 style="color: rgb(77, 29, 7)">{{hero.firstname}} {{hero.lastname}}</h6>
+          <h5 style="color: black">Date of death:</h5> 
+          <h6 style="color: rgb(77, 29, 7)">{{hero.date_of_death | date:'mediumDate'}}</h6>
+        </div> -->
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+  </div>
+
+  <div style="margin-left: 25%;margin-top: 2em;" >
+  <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
+</div>
+</section>
+<div class="fixed-but">
+    <a class="btn btn-outline-danger btn-round"  routerLink='/hero'> Add Hero </a>
+    </div>
+</div>
