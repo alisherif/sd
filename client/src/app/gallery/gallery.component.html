@@ -3,17 +3,13 @@
     <div class="section ">
       <div class="container" >
         
-          <mat-grid-list style="margin-top: 3em" cols="{{gridCols}}" rowHeight="200" *ngIf="gallary"> 
-                <mat-grid-tile *ngFor="let image of T">
+          <mat-grid-list style="margin-top: 3em" cols="3" rowHeight="200" *ngIf="gallary"> 
+                <mat-grid-tile *ngFor="let image of gallary" (click)="open(image)">
                     <img class="example-card " [src]="image" />
                   
                 </mat-grid-tile>
 
             </mat-grid-list> 
-
-            <div style="margin-left: 25%;margin-top: 2em;" >
-              <ngb-pagination  [collectionSize]="dataLen" [(page)]="page" [pageSize]="pSize" [maxSize]="5"  (pageChange)="pageChange()"></ngb-pagination>
-            </div>
             </div>
         </div>
     </section>

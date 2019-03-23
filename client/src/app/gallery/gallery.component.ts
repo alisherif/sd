@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { HeroService } from '../services/hero.service';
@@ -13,7 +13,9 @@ import { HeroService } from '../services/hero.service';
       </button>
   </div>
   <div class="modal-body">
-    <img src="{{image}}" />
+  <mat-card>
+    <img  mat-card-image src="{{image}}"  >
+    </mat-card>
       </div>
     
   `
@@ -30,28 +32,17 @@ export class NgbdModalContent {
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent  {
-
-  page=1;
-  pSize=15;
-  dataLen:number;  
-  gridCols:number=3;
-  T:string[];
 gallary= [];
   constructor(private modalService: NgbModal,private heroService:HeroService) {
-    if(window.innerWidth<600){
-      this.gridCols=2;
-    }else
-      {    this.gridCols = 3;}
-
     const html = document.getElementsByTagName('nav')[0];
     html.classList.remove('navbar-transparent');
   
-   this.getHeroes()
+   this.getHeroes();
   }
-  open() {
+  open(img:string) {
     console.log("open html")
       const modalRef = this.modalService.open(NgbdModalContent);
-      modalRef.componentInstance.image = '../../assets/img/main.png';
+      modalRef.componentInstance.image = img;
   }
 
   getHeroes(){
@@ -69,28 +60,8 @@ gallary= [];
       
     }
     );
-    try {
-      this.T=this.gallary.slice(this.page-1,this.page*this.pSize);
-    } catch (error) {
-      console.log("no T")
-    }
-    
-      this.dataLen=this.gallary.length;
-
   });
 
   }
 
-  pageChange(){
-    this.T=this.gallary.slice((this.page-1)*this.pSize,this.page*this.pSize);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if(window.innerWidth<600){
-      this.gridCols=2;
-    }else{
-      this.gridCols=3;
-    }
-  }
 }
