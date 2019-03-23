@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'contactus', component: ContactusComponent},
   { path: 'gallary', component: GalleryComponent},
-  // ,canActivate: [NbAuthGuard]
+ // ,canActivate: [NbAuthGuard]
   {path:'hero',canActivate: [NbAuthGuard],component:SignComponent},
   {path:'edit/:id',canActivate: [NbAuthGuard],component:EditHeroComponent},
   { path: 'admin',canActivate: [NbAuthGuard],component: HomeAdminComponent},
