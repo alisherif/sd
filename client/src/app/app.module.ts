@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -18,13 +19,23 @@ import { DetailsComponent } from './details/details.component';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 import {NgImageSliderModule} from 'ng-image-slider';
 import { NbAuthGuard } from './auth-guard.service';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { EditHeroComponent } from './edit-hero/edit-hero.component';
 
 import { NgxLoadingModule } from 'ngx-loading';
-
+import { ContactusComponent } from './contactus/contactus.component';
+import { FooterComponent } from './footer/footer.component';
+import { GalleryComponent, NgbdModalContent } from './gallery/gallery.component';
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +44,12 @@ import { NgxLoadingModule } from 'ngx-loading';
     SignComponent,
     DetailsComponent,
     HomeAdminComponent,
-    EditHeroComponent
+    EditHeroComponent,
+    ContactusComponent,
+    FooterComponent,
+    GalleryComponent,
+    NgbdModalContent 
+    
   ],
   imports: [
     CommonModule,
@@ -43,7 +59,11 @@ import { NgxLoadingModule } from 'ngx-loading';
     HttpClientModule,
     MatGridListModule,
     MatCardModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
     NgImageSliderModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     NgxLoadingModule.forRoot({}),
     NgbModule.forRoot(),
     NbThemeModule.forRoot(),
@@ -71,8 +91,13 @@ import { NgxLoadingModule } from 'ngx-loading';
  
       ],
     }),
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
   ],
-  providers: [NbAuthGuard],
+  entryComponents: [NgbdModalContent],
+  providers: [NbAuthGuard ,{provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

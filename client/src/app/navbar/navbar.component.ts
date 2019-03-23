@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-navbar',
@@ -8,12 +9,14 @@ import { Router } from '@angular/router';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
     private toggleButton: any;
     private sidebarVisible: boolean;
 
     constructor(private router: Router,public location: Location, private element : ElementRef) {
         this.sidebarVisible = false;
     }
+
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;

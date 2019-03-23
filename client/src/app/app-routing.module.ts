@@ -8,17 +8,20 @@ import { DetailsComponent } from './details/details.component';
 import { NbAuthGuard } from './auth-guard.service';
 import { EditHeroComponent } from './edit-hero/edit-hero.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { GalleryComponent } from './gallery/gallery.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 const routes: Routes = [
-  {path:'',redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
+  {path:'home',redirectTo: '/', pathMatch: 'full'},
+  { path: '', component: HomeComponent},
+  { path: 'contactus', component: ContactusComponent},
+  { path: 'gallary', component: GalleryComponent},
   // ,canActivate: [NbAuthGuard]
-  {path:'hero',component:SignComponent},
+  {path:'hero',canActivate: [NbAuthGuard],component:SignComponent},
   {path:'edit/:id',canActivate: [NbAuthGuard],component:EditHeroComponent},
   { path: 'admin',canActivate: [NbAuthGuard],component: HomeAdminComponent},
   {path:'details/:id',component:DetailsComponent},
-  {
-    path: 'auth',
+  {path: 'auth',
     loadChildren: './auth/smart-home-auth.module#AuthModule',
   },
   {path:'login',redirectTo:'/auth/login',pathMatch:'full'},

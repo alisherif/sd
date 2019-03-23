@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Hero } from '../Hero';
 import { Router } from "@angular/router";
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
+import { NgxLoadingComponent } from 'ngx-loading';
 
 @Component({
   selector: 'app-sign',
@@ -10,6 +11,9 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./sign.component.scss']
 })
 export class SignComponent implements OnInit {
+  @ViewChild('ngxLoading') ngxLoadingComponent: NgxLoadingComponent;
+  public loading = false;
+  
   date: {year: number, month: number};
   hero:Hero = new Hero();
   model: NgbDateStruct;
@@ -84,20 +88,21 @@ export class SignComponent implements OnInit {
     let formData = new FormData(); 
       formData.append('image_file', files[0], files[0].name); 
     this.heroService.addHeroImage(id,formData).subscribe((r)=>{
-      console.log(r);
+      this.loading =false;
+      this.router.navigate( ['/admin'] );
     });
   }
   addProfileFile(id:number,files: FileList){
     let formData = new FormData(); 
       formData.append('image_file', files[0], files[0].name); 
     this.heroService.addHeroThumbnail(id,formData).subscribe((r)=>{
-      console.log(r);
+      this.loading =false;
     });
   }
 
   onSubmit() {
     //this.hero.imgUrl=this.imgURL;
-   
+    this.loading =true;
     let DD=this.date_of_death;
     this.hero.date_of_death= ""+DD.year+"-"+DD.month+"-"+DD.day+""
     let DI=this.date_of_injuiry
@@ -110,15 +115,17 @@ export class SignComponent implements OnInit {
       this.addProfileFile(r.id,this.imagePathP);
       
       this.imagePath.forEach((path)=>{
-        console.log(path);
+        this.loading =true;
         this.addFile(r.id,path);
       })
+      if(this.imagePath.length < 1)
+      this.router.navigate( ['/admin'] );
     })
 
 
   }
   onDis(){
-    this.router.navigate( ['/home'] );
+    this.router.navigate( ['/admin'] );
   }
   
 }

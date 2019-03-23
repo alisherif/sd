@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../Hero';
-import { ImagesService } from '../images.service';
+import { ImagesService } from '../services/images.service';
 
 @Component({
   selector: 'app-details',

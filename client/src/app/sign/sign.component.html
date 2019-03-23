@@ -1,5 +1,9 @@
 <div class="main">
+
     <div class="section section-buttons">
+        <ngx-loading [show]="loading" [config]="{backdropBorderRadius: '3px'}"
+        ></ngx-loading>
+
         <div class="container">
 
 
@@ -37,21 +41,21 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group has-success">
-                        <input type="text" class="form-control form-control-success" [(ngModel)]="hero.firstname" #firstName name="firstName" placeholder="First Name">
+                        <input type="text" class="form-control form-control-success" required [(ngModel)]="hero.firstname" #firstName name="firstName" placeholder="First Name">
                         <br/>
-                        <input type="text" class="form-control" [(ngModel)]="hero.lastname" #lastName name="lastname" placeholder="Last Name">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.lastname" #lastName name="lastname" placeholder="Last Name">
                         <br/>
                         
-                        <input class="form-control" [(ngModel)]="date_of_birth" placeholder="birthday" [minDate]="minDate"
+                        <input class="form-control" required [(ngModel)]="date_of_birth" placeholder="birthday" [minDate]="minDate"
                         name="dp1"  ngbDatepicker #d1="ngbDatepicker"  (click)="d1.toggle()">
                         <br/>
-                        <input type="text" class="form-control" [(ngModel)]="hero.marital_status" #maritalStatus name="maritalStatus" placeholder="maritalStatus">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.marital_status" #maritalStatus name="maritalStatus" placeholder="maritalStatus">
                         <br/>
-                        <input type="text" class="form-control" [(ngModel)]="hero.address" #address name="address" placeholder="address">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.address" #address name="address" placeholder="address">
                         <br/>
-                        <input type="text" class="form-control" [(ngModel)]="hero.place_of_birth" #placeOfBirth name="placeOfBirth" placeholder="placeOfBirth">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.place_of_birth" #placeOfBirth name="placeOfBirth" placeholder="placeOfBirth">
                         <br/>
-                        <input type="text" class="form-control" [(ngModel)]="hero.occupation" #occupation name="occupation" placeholder="occupation">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.occupation" #occupation name="occupation" placeholder="occupation">
                         <hr/>
                         <div class="row">
                         <div class="col-8 col-sm-6 col-md-3">
@@ -60,24 +64,24 @@
                           </div>
                           <div class="col-8 col-sm-6 col-md-3">
                             
-                          <input class="form-control" [(ngModel)]="date_of_death"  placeholder="death day"
+                          <input class="form-control" required [(ngModel)]="date_of_death"  placeholder="death day"
                             name="dp2"  ngbDatepicker #d2="ngbDatepicker"  (click)="d2.toggle()">
                         </div>
                       </div>
                         <br/>
                        
-                        <input type="text" class="form-control" [(ngModel)]="hero.reason_of_death" #reaasonOfDeath name="reaasonOfDeath" placeholder="reaason of death">
+                        <input type="text" class="form-control" required [(ngModel)]="hero.reason_of_death" #reaasonOfDeath name="reaasonOfDeath" placeholder="reaason of death">
                         <br/>
                         
-                        <input class="form-control" [(ngModel)]="date_of_injuiry"   #dateOfInjuiry placeholder="Infection Date"
+                        <input class="form-control" required [(ngModel)]="date_of_injuiry"   #dateOfInjuiry placeholder="Infection Date"
                         name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                         <br/>
-                        <textarea class="form-control" rows="4" [(ngModel)]="hero.description" name="description" #description placeholder="description"></textarea>
+                        <textarea class="form-control" rows="4" required [(ngModel)]="hero.description" name="description" #description placeholder="description"></textarea>
 
                       </div>
                 
                     <div class="col-8 col-sm-6 col-md-3">
-                    <button type="submit" class="btn btn-success indent" >Submit</button>
+                    <button type="submit" class="btn indent" [disabled]="!bookForm.form.valid" >Submit</button>
                   
                     <button type="button" class="btn btn-info indent"  (click)="onDis()"  >Back</button>
                  
@@ -96,4 +100,5 @@
 
         </div>
       </div>
+
     </div>

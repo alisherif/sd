@@ -1,0 +1,41 @@
+
+<div class="main">
+    <div class="section section-buttons">
+        <div class="container">
+
+            <div class="tim-title">
+                <h3>Contact Us</h3>
+            </div>
+        
+            <form (ngSubmit)="captchaRef.execute()" #mailForm="ngForm"> 
+      <div class="form-group indentright " >
+        <h5>Your Name (required)</h5>
+          <input type="text" class="form-control form-control-success" required [(ngModel)]="message.name" #name name="name" >
+          <br/>
+          <h5>Your Email (required) </h5>
+          <input type="email" class="form-control form-control-success" required [(ngModel)]="message.email" #email name="email" >
+          <br/>
+          <h5>Subject (required) </h5>
+          <input type="text" class="form-control form-control-success" required [(ngModel)]="message.subject" #subject name="subject" >
+          <br/>
+          <h5>Your Message</h5>
+         <textarea class="form-control" rows="4" required [(ngModel)]="message.body" name="body" #body ></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-success indent" [disabled]="!mailForm.form.valid" >Send</button>
+
+     
+    </form>
+    </div>
+    <re-captcha #captchaRef="reCaptcha"
+    (resolved)="resolved($event)"
+    siteKey="6Ldp0xgUAAAAAF_iIss_hpFaVrjLbPGjwyfJwebB"
+    size="invisible"
+  ></re-captcha>
+  <!-- <button (click)="captchaRef.execute()">Submit</button>
+  <button (click)="captchaRef.reset()">Reset</button>
+  <pre>reCAPTCHA response log:
+  {{ captchaResponse || '(empty)' }}</pre> -->
+
+</div>
+</div>

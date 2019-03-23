@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http'
 
 import { Observable, of ,throwError} from 'rxjs';
 import { catchError, map, tap,retry } from 'rxjs/operators';
-import { Hero } from './Hero';
+import { Hero } from '../Hero';
 
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 

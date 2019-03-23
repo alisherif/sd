@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Hero } from '../Hero';
 import { Router, ActivatedRoute } from "@angular/router";
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { NgxLoadingComponent } from 'ngx-loading';
 
 @Component({
@@ -12,13 +12,13 @@ import { NgxLoadingComponent } from 'ngx-loading';
 })
 export class EditHeroComponent implements OnInit {
   @ViewChild('ngxLoading') ngxLoadingComponent: NgxLoadingComponent;
-  
+  public loading = false;
   hero:Hero = new Hero();
   gridCols:number=3;
   date_of_death:NgbDateStruct;
   date_of_injuiry:NgbDateStruct;
   date_of_birth:NgbDateStruct;
-  public loading = false;
+  
 
   minDate = {year: 1930, month: 1, day: 1};
 

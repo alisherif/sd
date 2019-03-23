@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { Hero } from '../Hero';
-import { ImagesService } from '../images.service';
+import { ImagesService } from '../services/images.service';
 import { NgxLoadingComponent } from 'ngx-loading';
 
 @Component({
@@ -15,7 +15,7 @@ export class HomeAdminComponent implements OnInit,OnDestroy {
   public loading = false;
   
   page=1;
-  pSize=6;
+  pSize=15;
   dataLen:number;  
   gridCols:number;
   T:object[];

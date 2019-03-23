@@ -1,8 +1,8 @@
 import {HostListener, Component, OnInit } from '@angular/core';
 
-import {ImagesService} from '../images.service';
+import {ImagesService} from '../services/images.service';
 
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { Hero } from '../Hero';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -22,7 +22,7 @@ export interface Tile {
 export class HomeComponent implements OnInit {
   
   page=1;
-  pSize=6;
+  pSize=15;
   dataLen:number;  
   gridCols:number=3;
   T:object[];

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "also": {
+    "rev-website": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,11 +13,12 @@
           "style": "sass"
         }
       },
+      
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/also",
+            "outputPath": "dist/rev-website",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/videogular2/fonts/videogular.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -62,18 +64,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "also:build"
+            "browserTarget": "rev-website:build"
+         
           },
           "configurations": {
             "production": {
-              "browserTarget": "also:build:production"
+              "browserTarget": "rev-website:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "also:build"
+            "browserTarget": "rev-website:build"
           }
         },
         "test": {
@@ -107,7 +110,7 @@
         }
       }
     },
-    "also-e2e": {
+    "rev-website-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +119,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "also:serve"
+            "devServerTarget": "rev-website:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "also:serve:production"
+              "devServerTarget": "rev-website:serve:production"
             }
           }
         },
@@ -136,5 +139,5 @@
       }
     }
   },
-  "defaultProject": "also"
+  "defaultProject": "rev-website"
 }

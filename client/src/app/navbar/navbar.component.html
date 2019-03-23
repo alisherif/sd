@@ -12,15 +12,29 @@
       <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                    <a routerLink='/login' class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">Admin</a>
+                  <a  [routerLink]="['/']"  class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">
+                      <!-- <i class="nc-icon nc-layout-11"></i> -->
+                      home</a>
+              </li>
+              <li class="nav-item">
+                    <a  [routerLink]="['/gallary']"  class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">
+                        <!-- <i class="nc-icon nc-layout-11"></i> -->
+                        Gallery</a>
                 </li>
               <li class="nav-item">
-                  <a  [routerLink]="['/home']" fragment="section-hero" class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">
-                      <!-- <i class="nc-icon nc-layout-11"></i> -->
-                      Hero</a>
-              </li>
-      
+                        <a  [routerLink]="['/']" fragment="section-hero" class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">
+                            <!-- <i class="nc-icon nc-layout-11"></i> -->
+                            martyrs</a>
+                    </li>
+            <li class="nav-item">
+                            <a  [routerLink]="['/contactus']" fragment="section-hero" class="nav-link" (click)="sidebarToggle()" style="font-size: medium;">
+                                <!-- <i class="nc-icon nc-layout-11"></i> -->
+                                contact us</a>
+                        </li>
+                              
           </ul>
       </div>
+
+     
   </div>
 </nav>
